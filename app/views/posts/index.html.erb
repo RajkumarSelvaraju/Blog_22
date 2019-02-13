@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+<div class="container">
+  <p id="notice"><%= notice %></p>
+
+  <h1>Posts</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td><h3><%= link_to post.title, (post.url != "" ? post.url : post_comments_path(post)) %></h3></td>      
+          <% if can? :manage, post%><td align="center"><%= link_to 'Edit', edit_post_path(post) %></td><%end%>
+          <% if can? :manage, post%><td align="center"><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td><%end%>
+          <%if can? :create, Comment%><td align="center"><%= link_to "Comment #{post.comments.empty? ? '' : post.comments.size}", new_post_comment_path(post) %></td><%end%>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+  <div class="row">
+    <%= link_to 'New Post', new_post_path, class: "a_link" %>
+  </div>
+</div>
+</body>
+</html>

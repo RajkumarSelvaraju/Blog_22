@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <div align="center" class="container">
+    <%= form_with(model: post, local: true) do |form| %>
+      <% if post.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+          <ul>
+          <% post.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="row">
+        <div class="col-25">
+          <label for="fname"><%= form.label :Title %></label>
+        </div>
+        <div class="col-75">
+          <%= form.text_field :title, autofocus: true %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="lname"><%= form.label :Url %></label>
+        </div>
+        <div class="col-75">
+          <%= form.text_field :url %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="subject"><%= form.label :content %></label>
+        </div>
+        <div class="col-75">
+          <%= form.text_area :content %>
+        </div>
+      </div>
+      <%= form.hidden_field :user_id, value: current_user.id%>
+      <div class="row">
+        <%= form.submit "Create Post" %>
+      </div>
+    <% end %>
+  </div>
+</body>
+</html>
