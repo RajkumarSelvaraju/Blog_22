@@ -8,7 +8,7 @@ default: &default
   adapter: mysql2
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: b079a0a07812a2
-  password: ff79231e
+  password: 85b9a2ad8abb697
   host: us-cdbr-iron-east-03.cleardb.net
   encoding: utf8
   timeout: 5000
